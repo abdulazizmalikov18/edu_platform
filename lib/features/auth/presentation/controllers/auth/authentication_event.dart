@@ -22,6 +22,24 @@ class LoginUser extends AuthenticationEvent {
   });
 }
 
+class SignUpEmail extends AuthenticationEvent {
+  final String email;
+  final String password;
+  final String whom;
+  final String name;
+
+  final Function(String)? onError;
+  final VoidCallback? onSuccess;
+  SignUpEmail({
+    required this.email,
+    required this.password,
+    required this.whom,
+    required this.name,
+    this.onError,
+    this.onSuccess,
+  });
+}
+
 class CheckUser extends AuthenticationEvent {}
 
 class UpdateCard extends AuthenticationEvent {

@@ -5,7 +5,7 @@ import 'package:flutter/foundation.dart';
 
 class DioSettings {
   BaseOptions _dioBaseOptions = BaseOptions(
-    baseUrl: 'https://single.uz/api/',
+    baseUrl: 'http://single.uz/api/',
     connectTimeout: const Duration(milliseconds: 35000),
     receiveTimeout: const Duration(milliseconds: 33000),
     followRedirects: false,
@@ -17,7 +17,7 @@ class DioSettings {
 
   void setBaseOptions({String? lang}) {
     _dioBaseOptions = BaseOptions(
-      baseUrl: 'https://single.uz/api/',
+      baseUrl: 'http://single.uz/api/',
       connectTimeout: const Duration(milliseconds: 35000),
       receiveTimeout: const Duration(milliseconds: 33000),
       headers: <String, dynamic>{'Accept-Language': lang},

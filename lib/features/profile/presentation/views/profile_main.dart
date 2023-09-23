@@ -50,7 +50,7 @@ class ProfileMainView extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          state.user.data.whom,
+                          state.user.data.firstname,
                           style: Theme.of(context).textTheme.displaySmall,
                         ),
                         const SizedBox(height: 8),

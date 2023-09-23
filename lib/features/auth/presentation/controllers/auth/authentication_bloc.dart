@@ -81,6 +81,27 @@ class AuthenticationBloc
       }
     });
 
+    on<SignUpEmail>((event, emit) async {
+      emit(const AuthenticationState.loading());
+      final result = await repository.signUpEmail(
+        email: event.email,
+        password: event.password,
+        name: event.name,
+        whom: event.whom,
+      );
+      if (result.isRight) {
+        if (event.onSuccess != null) {
+          event.onSuccess!();
+        }
+        emit(const AuthenticationState.cancelLoading());
+      } else {
+        if (event.onError != null) {
+          event.onError!((result.left as ServerFailure).errorMessage);
+        }
+        emit(const AuthenticationState.cancelLoading());
+      }
+    });
+
     on<CheckLogin>((event, emit) async {
       var isLogged = StorageRepository.getBool('isLogged');
       if (isLogged) {
@@ -93,8 +114,7 @@ class AuthenticationBloc
     });
 
     on<CheckUser>((event, emit) async {
-      final hasToken =
-          StorageRepository.getString('token').isNotEmpty;
+      final hasToken = StorageRepository.getString('token').isNotEmpty;
       if (hasToken) {
         final response = await repository.getUser();
         if (response.isRight) {

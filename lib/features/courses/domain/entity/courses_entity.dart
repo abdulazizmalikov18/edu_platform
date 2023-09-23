@@ -1,4 +1,3 @@
-import 'package:edu_platform/features/courses/domain/entity/plan_entity.dart';
 import 'package:equatable/equatable.dart';
 
 class CoursesEntity extends Equatable {

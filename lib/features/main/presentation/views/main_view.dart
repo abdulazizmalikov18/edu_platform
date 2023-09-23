@@ -123,7 +123,7 @@ class _MainViewState extends State<MainView> {
                     ),
                   ),
                 ),
-                label: state.user.data.whom,
+                label: state.user.data.firstname,
               ),
             ],
           ),

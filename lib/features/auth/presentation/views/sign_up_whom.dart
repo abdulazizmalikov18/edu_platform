@@ -4,7 +4,13 @@ import 'package:edu_platform/features/common/widgets/w_button.dart';
 import 'package:flutter/material.dart';
 
 class SignUpWhomView extends StatelessWidget {
-  const SignUpWhomView({super.key});
+  const SignUpWhomView({
+    super.key,
+    required this.email,
+    required this.password,
+  });
+  final String email;
+  final String password;
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +32,11 @@ class SignUpWhomView extends StatelessWidget {
               margin: const EdgeInsets.only(top: 40, bottom: 20),
               onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => const SignUpNameView(),
+                  builder: (context) => SignUpNameView(
+                    email: email,
+                    password: password,
+                    whom: 'adult',
+                  ),
                 ));
               },
               height: 64,
@@ -39,7 +49,11 @@ class SignUpWhomView extends StatelessWidget {
             WButton(
               onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => const SignUpNameView(),
+                  builder: (context) => SignUpNameView(
+                    email: email,
+                    password: password,
+                    whom: 'kid',
+                  ),
                 ));
               },
               height: 64,

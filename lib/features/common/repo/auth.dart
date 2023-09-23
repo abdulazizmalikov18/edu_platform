@@ -11,8 +11,6 @@ import 'package:edu_platform/features/common/data/models/user.dart';
 import 'package:edu_platform/features/common/repo/global_request_repository.dart';
 import 'package:edu_platform/features/common/repo/storage_repository.dart';
 
-UserModel userModel = const UserModel();
-
 class AuthRepository {
   final GlobalRequestRepository repo = GlobalRequestRepository();
   final StreamController<AuthenticationStatus> authStream =
@@ -46,7 +44,42 @@ class AuthRepository {
         data: {"email": email, "password": password},
       );
       if (result.isRight) {
-        userModel = result.right;
+        await StorageRepository.putString(
+          key: 'token',
+          value: result.right.data.token,
+        );
+        return Right(result.right);
+      } else {
+        return Left(result.left);
+      }
+    } on ServerException {
+      rethrow;
+    } on DioError {
+      throw DioExceptions();
+    } on Exception catch (e) {
+      throw ParsingException(errorMessage: '$e catch error');
+    }
+  }
+
+  Future<Either<Failure, UserModel>> signUpEmail({
+    required String email,
+    required String password,
+    required String whom,
+    required String name,
+  }) async {
+    try {
+      final result = await repo.postAndSingle<UserModel>(
+        endpoint: 'user/client/register',
+        fromJson: UserModel.fromJson,
+        sendToken: false,
+        data: {
+          "email": email,
+          "password": password,
+          "whom": whom,
+          "firstname": name
+        },
+      );
+      if (result.isRight) {
         await StorageRepository.putString(
           key: 'token',
           value: result.right.data.token,

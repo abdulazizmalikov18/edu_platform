@@ -46,8 +46,16 @@ class _LoginViewState extends State<LoginView> {
                 padding: const EdgeInsets.only(top: 12, bottom: 24),
                 child: WTextField(
                   onChanged: (value) {},
+                  validate: (value) {
+                    if (value!.length < 8) {
+                      return "Email";
+                    } else {
+                      return null;
+                    }
+                  },
                   controller: _email,
                   hintText: 'Example@domain.com',
+                  keyBoardType: TextInputType.emailAddress,
                 ),
               ),
               const Text('Password'),
@@ -55,8 +63,16 @@ class _LoginViewState extends State<LoginView> {
                 padding: const EdgeInsets.only(top: 12, bottom: 24),
                 child: WTextField(
                   onChanged: (value) {},
+                  validate: (value) {
+                    if (value!.length < 8) {
+                      return "Password";
+                    } else {
+                      return null;
+                    }
+                  },
                   controller: _password,
                   hintText: 'Your password',
+                  keyBoardType: TextInputType.visiblePassword,
                 ),
               ),
               BlocBuilder<AuthenticationBloc, AuthenticationState>(

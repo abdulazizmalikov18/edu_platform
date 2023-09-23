@@ -15,6 +15,6 @@ GenericPagination<T> _$GenericPaginationFromJson<T>(
       message: json['message'] as String?,
       data: (json['data'] as List<dynamic>?)?.map(fromJsonT).toList() ?? [],
       totalCount: json['totalCount'] as int?,
-      page: json['page'] as String?,
-      limit: json['limit'] as String?,
+      page: json['page'] as int?,
+      limit: json['limit'] as int?,
     );

@@ -13,9 +13,9 @@ class GenericPagination<T> {
   @JsonKey(name: 'totalCount')
   final int? totalCount;
   @JsonKey(name: 'page')
-  final String? page;
+  final int? page;
   @JsonKey(name: 'limit')
-  final String? limit;
+  final int? limit;
 
   GenericPagination({
     required this.code,

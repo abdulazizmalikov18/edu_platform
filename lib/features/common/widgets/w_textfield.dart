@@ -173,6 +173,14 @@ class _WTextFieldState extends State<WTextField>
                 borderSide:
                     BorderSide(color: widget.hasError ? red : whiteGrey),
               ),
+              errorBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(10),
+                borderSide: const BorderSide(color: red),
+              ),
+              focusedErrorBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8),
+                borderSide: const BorderSide(color: red),
+              ),
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8),
                 borderSide: BorderSide(color: widget.hasError ? red : green),

@@ -1,5 +1,4 @@
 import 'package:edu_platform/features/courses/domain/entity/courses_entity.dart';
-import 'package:edu_platform/features/courses/domain/entity/plan_entity.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'courses_model.g.dart';

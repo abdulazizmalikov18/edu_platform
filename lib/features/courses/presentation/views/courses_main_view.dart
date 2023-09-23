@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:edu_platform/assets/colors/colors.dart';
 import 'package:edu_platform/assets/constants/icons.dart';
 import 'package:edu_platform/assets/constants/images.dart';
@@ -54,8 +55,12 @@ class _CoursesMainViewState extends State<CoursesMainView> {
                             color: index == 0
                                 ? Colors.yellow
                                 : const Color(0xff8FF727),
-                            image: const DecorationImage(
-                              image: AssetImage(AppImages.userMult),
+                            image: DecorationImage(
+                              image: CachedNetworkImageProvider(
+                                state.courseList[index].image,
+                                errorListener: () =>
+                                    const AssetImage(AppImages.userMult),
+                              ),
                             ),
                           ),
                           alignment: Alignment.bottomLeft,

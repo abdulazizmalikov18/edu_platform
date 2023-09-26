@@ -71,7 +71,7 @@ class _MyAppState extends State<MyApp> {
                   break;
               }
             },
-            child: child,
+            child: child
           );
         },
       ),

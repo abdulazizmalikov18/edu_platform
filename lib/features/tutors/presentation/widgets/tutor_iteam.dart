@@ -72,7 +72,7 @@ class _TutorIteamState extends State<TutorIteam> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      widget.tutors.whom,
+                      "${widget.tutors.firstname} ${widget.tutors.lastname}",
                       style: Theme.of(context).textTheme.titleMedium,
                     ),
                     const SizedBox(height: 8),
@@ -86,10 +86,7 @@ class _TutorIteamState extends State<TutorIteam> {
                         const SizedBox(width: 4),
                         Text(
                           '${widget.tutors.event.studentCount} students',
-                          style: Theme.of(context)
-                              .textTheme
-                              .labelSmall!
-                              .copyWith(color: inputGrey),
+                          style: Theme.of(context).textTheme.labelSmall!.copyWith(color: inputGrey),
                         )
                       ],
                     ),
@@ -103,9 +100,7 @@ class _TutorIteamState extends State<TutorIteam> {
                         isLiked = !isLiked;
                       });
                     },
-                    icon: isLiked
-                        ? const Icon(Icons.favorite)
-                        : const Icon(Icons.favorite_border),
+                    icon: isLiked ? const Icon(Icons.favorite) : const Icon(Icons.favorite_border),
                   ),
               ],
             ),
@@ -129,10 +124,7 @@ class _TutorIteamState extends State<TutorIteam> {
                 ),
                 Text(
                   'Ratings: ${widget.tutors.rating.count}',
-                  style: Theme.of(context)
-                      .textTheme
-                      .labelSmall!
-                      .copyWith(color: inputGrey),
+                  style: Theme.of(context).textTheme.labelSmall!.copyWith(color: inputGrey),
                 ),
               ],
             ),

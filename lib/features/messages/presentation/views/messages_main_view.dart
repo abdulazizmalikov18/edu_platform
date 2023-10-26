@@ -31,7 +31,7 @@ class _MessagesMainViewState extends State<MessagesMainView> {
             );
           } else if (state.status.isSubmissionSuccess) {
             return ListView.builder(
-              itemCount: 6,
+              itemCount: state.chatList.length,
               itemBuilder: (context, index) => ListTile(
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
@@ -40,9 +40,8 @@ class _MessagesMainViewState extends State<MessagesMainView> {
                 },
                 tileColor: white,
                 shape: Border(
-                  bottom: index == 5
-                      ? const BorderSide(width: 1, color: dividerGrey)
-                      : BorderSide.none,
+                  bottom:
+                      index == 5 ? const BorderSide(width: 1, color: dividerGrey) : BorderSide.none,
                   top: const BorderSide(width: 1, color: dividerGrey),
                 ),
                 leading: Container(
@@ -82,25 +81,18 @@ class _MessagesMainViewState extends State<MessagesMainView> {
                     // ),
                     Text(
                       '9:16 PM',
-                      style: Theme.of(context)
-                          .textTheme
-                          .labelSmall!
-                          .copyWith(color: inputGrey),
+                      style: Theme.of(context).textTheme.labelSmall!.copyWith(color: inputGrey),
                     ),
                     Container(
                       margin: const EdgeInsets.only(top: 8),
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 4, horizontal: 12),
+                      padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 12),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(16),
                         color: red,
                       ),
                       child: Text(
                         '2',
-                        style: Theme.of(context)
-                            .textTheme
-                            .labelSmall!
-                            .copyWith(color: white),
+                        style: Theme.of(context).textTheme.labelSmall!.copyWith(color: white),
                       ),
                     ),
                   ],

@@ -24,20 +24,16 @@ class TutorsDataSourceImpl extends TutorsDataSource {
         queryParameters: {'page': 1, 'limit': 10},
         options: Options(
           headers: StorageRepository.getString('token').isNotEmpty
-              ? {
-                  'Authorization':
-                      'Bearer ${StorageRepository.getString('token')}'
-                }
+              ? {'Authorization': 'Bearer ${StorageRepository.getString('token')}'}
               : {},
         ),
       );
       if (response.statusCode! >= 200 && response.statusCode! < 300) {
-        return GenericPagination.fromJson(response.data,
-            (p0) => TutorsModel.fromJson(p0 as Map<String, dynamic>));
+        return GenericPagination.fromJson(
+            response.data, (p0) => TutorsModel.fromJson(p0 as Map<String, dynamic>));
       }
       throw ServerException(
-          statusCode: response.statusCode ?? 0,
-          errorMessage: response.statusMessage ?? '');
+          statusCode: response.statusCode ?? 0, errorMessage: response.statusMessage ?? '');
     } on ServerException {
       rethrow;
     } on DioError {
@@ -55,20 +51,16 @@ class TutorsDataSourceImpl extends TutorsDataSource {
         queryParameters: {'page': 1, 'limit': 10},
         options: Options(
           headers: StorageRepository.getString('token').isNotEmpty
-              ? {
-                  'Authorization':
-                      'Bearer ${StorageRepository.getString('token')}'
-                }
+              ? {'Authorization': 'Bearer ${StorageRepository.getString('token')}'}
               : {},
         ),
       );
       if (response.statusCode! >= 200 && response.statusCode! < 300) {
-        return GenericPagination.fromJson(response.data,
-            (p0) => TutorsModel.fromJson(p0 as Map<String, dynamic>));
+        return GenericPagination.fromJson(
+            response.data, (p0) => TutorsModel.fromJson(p0 as Map<String, dynamic>));
       }
       throw ServerException(
-          statusCode: response.statusCode ?? 0,
-          errorMessage: response.statusMessage ?? '');
+          statusCode: response.statusCode ?? 0, errorMessage: response.statusMessage ?? '');
     } on ServerException {
       rethrow;
     } on DioError {

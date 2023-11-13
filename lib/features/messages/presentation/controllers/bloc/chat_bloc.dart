@@ -15,12 +15,10 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
       emit(state.copyWith(status: FormzStatus.submissionInProgress));
       final result = await useCase.call(NoParams());
       if (result.isRight) {
-        emit(
-          state.copyWith(
-            chatList: result.right.data,
-            status: FormzStatus.submissionSuccess,
-          ),
-        );
+        emit(state.copyWith(
+          chatList: result.right.data,
+          status: FormzStatus.submissionSuccess,
+        ));
       } else {
         emit(state.copyWith(status: FormzStatus.submissionFailure));
       }

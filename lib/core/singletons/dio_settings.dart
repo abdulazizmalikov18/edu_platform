@@ -5,7 +5,7 @@ import 'package:flutter/foundation.dart';
 
 class DioSettings {
   BaseOptions _dioBaseOptions = BaseOptions(
-    baseUrl: 'https://apiv1.rebata.uz/api/',
+    baseUrl: 'https://apiv1.rebata.com/api/',
     connectTimeout: const Duration(milliseconds: 35000),
     receiveTimeout: const Duration(milliseconds: 33000),
     followRedirects: false,
@@ -17,7 +17,7 @@ class DioSettings {
 
   void setBaseOptions({String? lang}) {
     _dioBaseOptions = BaseOptions(
-      baseUrl: 'http://single.uz/api/',
+      baseUrl: 'https://apiv1.rebata.com/api/',
       connectTimeout: const Duration(milliseconds: 35000),
       receiveTimeout: const Duration(milliseconds: 33000),
       headers: <String, dynamic>{'Accept-Language': lang},
@@ -29,8 +29,7 @@ class DioSettings {
 // final _dio = serviceLocator<DioSettings>().dio; ///sample
   BaseOptions get dioBaseOptions => _dioBaseOptions;
 
-  bool get chuck =>
-      StorageRepository.getBool(StorageKeys.CHUCK, defValue: false);
+  bool get chuck => StorageRepository.getBool(StorageKeys.CHUCK, defValue: false);
 
   Dio get dio => Dio(_dioBaseOptions)
     ..interceptors.add(LogInterceptor(

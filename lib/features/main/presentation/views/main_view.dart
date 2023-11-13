@@ -6,6 +6,7 @@ import 'package:edu_platform/features/courses/presentation/controllers/bloc/cour
 import 'package:edu_platform/features/courses/presentation/views/courses_main_view.dart';
 import 'package:edu_platform/features/main/presentation/views/calendar_view.dart';
 import 'package:edu_platform/features/main/presentation/views/home_view.dart';
+import 'package:edu_platform/features/main/presentation/views/notification_view.dart';
 import 'package:edu_platform/features/messages/presentation/views/messages_main_view.dart';
 import 'package:edu_platform/features/profile/presentation/views/profile_main.dart';
 import 'package:edu_platform/features/tutors/presentation/controllers/bloc/tutors_bloc.dart';
@@ -66,7 +67,11 @@ class _MainViewState extends State<MainView> {
                 icon: SvgPicture.asset(AppIcons.calendar),
               ),
               IconButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).push(CupertinoPageRoute(
+                    builder: (context) => const NotificationView(),
+                  ));
+                },
                 icon: SvgPicture.asset(AppIcons.notif),
               ),
             ],

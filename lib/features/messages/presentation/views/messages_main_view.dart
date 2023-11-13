@@ -65,7 +65,7 @@ class _MessagesMainViewState extends State<MessagesMainView> {
                   ),
                 ),
                 title: Text(
-                  state.chatList[index].whom,
+                  "${state.chatList[index].firstname} ${state.chatList[index].lastname}",
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
                 subtitle: Text(

@@ -40,8 +40,7 @@ class _CoursesMainViewState extends State<CoursesMainView> {
                 padding: const EdgeInsets.all(16),
                 itemBuilder: (context, index) => InkWell(
                   onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) =>
-                          Coursesview(courseList: state.courseList[index]))),
+                      builder: (context) => Coursesview(courseList: state.courseList[index]))),
                   child: Container(
                     margin: const EdgeInsets.only(bottom: 16),
                     height: 288,
@@ -50,16 +49,12 @@ class _CoursesMainViewState extends State<CoursesMainView> {
                         Container(
                           height: 184,
                           decoration: BoxDecoration(
-                            borderRadius: const BorderRadius.vertical(
-                                top: Radius.circular(20)),
-                            color: index == 0
-                                ? Colors.yellow
-                                : const Color(0xff8FF727),
+                            borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
+                            color: index == 0 ? Colors.yellow : const Color(0xff8FF727),
                             image: DecorationImage(
                               image: CachedNetworkImageProvider(
                                 state.courseList[index].image,
-                                errorListener: () =>
-                                    const AssetImage(AppImages.userMult),
+                                errorListener: (value) => const AssetImage(AppImages.userMult),
                               ),
                             ),
                           ),
@@ -93,8 +88,7 @@ class _CoursesMainViewState extends State<CoursesMainView> {
                           decoration: BoxDecoration(
                             color: white,
                             border: Border.all(color: whiteGrey),
-                            borderRadius: const BorderRadius.vertical(
-                                bottom: Radius.circular(20)),
+                            borderRadius: const BorderRadius.vertical(bottom: Radius.circular(20)),
                           ),
                           width: double.infinity,
                           child: Column(

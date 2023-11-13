@@ -12,6 +12,7 @@ class MessagesView extends StatelessWidget {
   Widget build(BuildContext context) {
     return KeyboardDismisser(
       child: Scaffold(
+        extendBody: true,
         appBar: AppBar(
           centerTitle: false,
           title: Row(

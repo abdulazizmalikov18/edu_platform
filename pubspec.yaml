@@ -27,7 +27,8 @@ dependencies:
   mask_text_input_formatter: ^2.4.0
   json_annotation: ^4.8.1
   table_calendar: ^3.0.9
-  zego_uikit_prebuilt_call: ^3.17.9
+  zego_uikit_prebuilt_video_conference: ^2.6.3
+
 
 dev_dependencies:
   flutter_test:
@@ -35,6 +36,7 @@ dev_dependencies:
   flutter_lints: ^2.0.0
   build_runner: ^2.4.5
   json_serializable: ^6.7.0
+  rename: ^3.0.1
 
 flutter:
   uses-material-design: true

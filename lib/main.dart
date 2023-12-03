@@ -13,6 +13,7 @@ import 'package:edu_platform/features/splash/presentation/views/splash_sc.dart';
 import 'package:edu_platform/features/tutors/presentation/controllers/bloc/tutors_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:zego_uikit_prebuilt_video_conference/zego_uikit_prebuilt_video_conference.dart';
 
 import 'features/auth/presentation/controllers/auth/authentication_bloc.dart';
 
@@ -20,7 +21,9 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await StorageRepository.getInstance();
   setupLocator();
-  runApp(const MyApp());
+  ZegoUIKit().initLog().then((value) {
+    runApp(const MyApp());
+  });
 }
 
 class MyApp extends StatefulWidget {
@@ -38,9 +41,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(
-            create: (context) =>
-                AuthenticationBloc(AuthRepository())..add(CheckUser())),
+        BlocProvider(create: (context) => AuthenticationBloc(AuthRepository())..add(CheckUser())),
         BlocProvider(create: (context) => ShowPopUpBloc()),
         BlocProvider(create: (context) => CoursesBloc()),
         BlocProvider(create: (context) => TutorsBloc()),
@@ -56,22 +57,20 @@ class _MyAppState extends State<MyApp> {
           SizeConfig().init(context);
           return BlocListener<AuthenticationBloc, AuthenticationState>(
             listener: (context, state) {
-              debugPrint('STATE LISTENER ============> ${state.status}');
+              debugPrint('STATE LISTENER ============>1 ${state.status}');
               switch (state.status) {
                 case AuthenticationStatus.unauthenticated:
-                  navigator.pushAndRemoveUntil(
-                      fade(page: const AuthMain()), (route) => false);
+                  navigator.pushAndRemoveUntil(fade(page: const AuthMain()), (route) => false);
                   break;
                 case AuthenticationStatus.authenticated:
-                  navigator.pushAndRemoveUntil(
-                      fade(page: const MainView()), (route) => false);
+                  navigator.pushAndRemoveUntil(fade(page: const MainView()), (route) => false);
                   break;
                 case AuthenticationStatus.loading:
                 case AuthenticationStatus.cancelLoading:
                   break;
               }
             },
-            child: child
+            child: child,
           );
         },
       ),

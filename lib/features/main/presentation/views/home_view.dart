@@ -1,8 +1,11 @@
+import 'dart:math';
+
 import 'package:edu_platform/assets/colors/colors.dart';
 import 'package:edu_platform/assets/constants/icons.dart';
 import 'package:edu_platform/assets/constants/images.dart';
 import 'package:edu_platform/features/common/widgets/w_button.dart';
 import 'package:edu_platform/features/common/widgets/w_scale.dart';
+import 'package:edu_platform/features/main/presentation/views/live_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -17,7 +20,6 @@ class _HomeViewState extends State<HomeView> {
   List<String> list = ['Upcoming', 'Live', 'Need schedule', 'Complated'];
   PageController controller = PageController(initialPage: 0);
   int select = 0;
-  
 
   @override
   Widget build(BuildContext context) {
@@ -45,12 +47,10 @@ class _HomeViewState extends State<HomeView> {
                 child: AnimatedContainer(
                   duration: const Duration(milliseconds: 300),
                   margin: const EdgeInsets.only(right: 12),
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 8, horizontal: 28),
+                  padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 28),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(44),
-                    border:
-                        Border.all(color: select == index ? green : whiteGrey),
+                    border: Border.all(color: select == index ? green : whiteGrey),
                     color: select == index ? green : white,
                   ),
                   alignment: Alignment.center,
@@ -67,7 +67,7 @@ class _HomeViewState extends State<HomeView> {
               physics: const NeverScrollableScrollPhysics(),
               controller: controller,
               children: [
-                const SelectDataIteam(),
+                SelectDataIteam(),
                 Padding(
                   padding: const EdgeInsets.all(16),
                   child: Column(
@@ -104,8 +104,7 @@ class _HomeViewState extends State<HomeView> {
                                   child: Row(
                                     children: [
                                       Padding(
-                                        padding:
-                                            const EdgeInsets.only(right: 8.0),
+                                        padding: const EdgeInsets.only(right: 8.0),
                                         child: SvgPicture.asset(AppIcons.live),
                                       ),
                                       Text(
@@ -172,7 +171,7 @@ class _HomeViewState extends State<HomeView> {
                     ],
                   ),
                 ),
-                const SelectDataIteam(),
+                SelectDataIteam(),
                 Container(),
               ],
             ),
@@ -184,9 +183,12 @@ class _HomeViewState extends State<HomeView> {
 }
 
 class SelectDataIteam extends StatelessWidget {
-  const SelectDataIteam({
+  SelectDataIteam({
     super.key,
   });
+
+  /// Users who use the same liveID can join the same live streaming.
+  final liveTextCtrl = TextEditingController(text: Random().nextInt(10000).toString());
 
   @override
   Widget build(BuildContext context) {
@@ -221,10 +223,7 @@ class SelectDataIteam extends StatelessWidget {
                   padding: const EdgeInsets.only(top: 20, bottom: 8),
                   child: Text(
                     'Schedule a Lesson',
-                    style: Theme.of(context)
-                        .textTheme
-                        .displayLarge!
-                        .copyWith(fontSize: 20),
+                    style: Theme.of(context).textTheme.displayLarge!.copyWith(fontSize: 20),
                   ),
                 ),
                 Padding(
@@ -237,13 +236,26 @@ class SelectDataIteam extends StatelessWidget {
                 ),
                 const Spacer(),
                 WButton(
-                  onTap: () {},
+                  onTap: () => jumpToLivePage(
+                    context,
+                    liveID: liveTextCtrl.text,
+                    isHost: true,
+                  ),
                   text: 'Schedule lesson',
                 )
               ],
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  jumpToLivePage(BuildContext context, {required String liveID, required bool isHost}) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const VideoConferencePage(conferenceID: "video_conference_id_234"),
       ),
     );
   }

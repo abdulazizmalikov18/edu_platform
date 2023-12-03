@@ -5,6 +5,7 @@ abstract class AppTheme {
   static ThemeData theme() => ThemeData(
         scaffoldBackgroundColor: backgroundColor,
         fontFamily: 'Inter',
+        useMaterial3: false,
         appBarTheme: const AppBarTheme(
           elevation: 2,
           color: white,

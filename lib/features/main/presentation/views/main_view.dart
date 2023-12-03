@@ -54,7 +54,7 @@ class _MainViewState extends State<MainView> {
             ),
             centerTitle: false,
             title: Image.asset(
-              AppImages.eduPlatform,
+              AppImages.logo,
               height: 16,
             ),
             actions: [

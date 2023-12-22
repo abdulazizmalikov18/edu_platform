@@ -1,6 +1,8 @@
 import 'package:edu_platform/core/singletons/dio_settings.dart';
 import 'package:edu_platform/features/Courses/data/datasource/Courses_data_source.dart';
 import 'package:edu_platform/features/courses/data/repo/courses_repo_impl.dart';
+import 'package:edu_platform/features/main/data/data_source/home_data_source.dart';
+import 'package:edu_platform/features/main/data/repo/home_repo_impl.dart';
 import 'package:edu_platform/features/messages/data/datasource/chat_data_source.dart';
 import 'package:edu_platform/features/messages/data/repo/chat_repo_impl.dart';
 import 'package:edu_platform/features/tutors/data/datasource/tutors_data_source.dart';
@@ -12,10 +14,8 @@ final serviceLocator = GetIt.I;
 void setupLocator() {
   serviceLocator
     ..registerLazySingleton(DioSettings.new)
-    ..registerLazySingleton(
-        () => TutorsRepoImpl(dataSource: TutorsDataSourceImpl()))
-    ..registerLazySingleton(
-        () => CoursesRepoImpl(dataSource: CoursesDataSourceImpl()))
-    ..registerLazySingleton(
-        () => ChatRepoImpl(dataSource: ChatDataSourceImpl()));
+    ..registerLazySingleton(() => TutorsRepoImpl(dataSource: TutorsDataSourceImpl()))
+    ..registerLazySingleton(() => CoursesRepoImpl(dataSource: CoursesDataSourceImpl()))
+    ..registerLazySingleton(() => ChatRepoImpl(dataSource: ChatDataSourceImpl()))
+    ..registerLazySingleton(() => HomeRepoImpl(dataSource: EventsDataSourceImpl()));
 }

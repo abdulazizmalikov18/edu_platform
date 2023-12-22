@@ -18,3 +18,16 @@ GenericPagination<T> _$GenericPaginationFromJson<T>(
       page: json['page'] as int?,
       limit: json['limit'] as int?,
     );
+
+Map<String, dynamic> _$GenericPaginationToJson<T>(
+  GenericPagination<T> instance,
+  Object? Function(T value) toJsonT,
+) =>
+    <String, dynamic>{
+      'status': instance.code,
+      'message': instance.message,
+      'data': instance.data.map(toJsonT).toList(),
+      'totalCount': instance.totalCount,
+      'page': instance.page,
+      'limit': instance.limit,
+    };

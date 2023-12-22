@@ -7,6 +7,7 @@ import 'package:edu_platform/features/common/repo/auth.dart';
 import 'package:edu_platform/features/common/repo/storage_repository.dart';
 import 'package:edu_platform/features/common/rout/rout.dart';
 import 'package:edu_platform/features/courses/presentation/controllers/bloc/courses_bloc.dart';
+import 'package:edu_platform/features/main/presentation/controllers/bloc/home_bloc.dart';
 import 'package:edu_platform/features/main/presentation/views/main_view.dart';
 import 'package:edu_platform/features/messages/presentation/controllers/bloc/chat_bloc.dart';
 import 'package:edu_platform/features/splash/presentation/views/splash_sc.dart';
@@ -46,6 +47,7 @@ class _MyAppState extends State<MyApp> {
         BlocProvider(create: (context) => CoursesBloc()),
         BlocProvider(create: (context) => TutorsBloc()),
         BlocProvider(create: (context) => ChatBloc()),
+        BlocProvider(create: (context) => HomeBloc()),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',

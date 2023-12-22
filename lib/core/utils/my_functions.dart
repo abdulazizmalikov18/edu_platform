@@ -7,6 +7,18 @@ import 'package:edu_platform/core/exceptions/failures.dart';
 import 'package:flutter/material.dart';
 
 class MyFunctions {
+  static String getDay(bool isDay) {
+    DateTime today = DateTime.now();
+    DateTime selDay;
+    if (isDay) {
+      selDay = today.subtract(const Duration(days: 1)).toLocal();
+    } else {
+      selDay = today.add(const Duration(days: 2)).toLocal();
+    }
+
+    return "${selDay.year}-${selDay.month}-${selDay.day}";
+  }
+
   static String phoneFormat(String phone) {
     var formattedPhone = '';
     if (phone.length == 9) {
@@ -57,13 +69,11 @@ class MyFunctions {
     return priceInText.trim();
   }
 
-  static Future<ImageInfo> getImageInfo(
-      BuildContext context, String image) async {
+  static Future<ImageInfo> getImageInfo(BuildContext context, String image) async {
     final assetImage = AssetImage(image);
     final stream = assetImage.resolve(createLocalImageConfiguration(context));
     final completer = Completer<ImageInfo>();
-    stream.addListener(
-        ImageStreamListener((imageInfo, _) => completer.complete(imageInfo)));
+    stream.addListener(ImageStreamListener((imageInfo, _) => completer.complete(imageInfo)));
     return completer.future;
   }
 
@@ -79,10 +89,8 @@ class MyFunctions {
     final pictureRecorder = ui.PictureRecorder();
     final canvas = Canvas(pictureRecorder);
     final paint = Paint()..color = Colors.red;
-    canvas.drawImage(
-        await getImageInfo(context, image).then((value) => value.image),
-        offset ?? const Offset(0, 3),
-        paint);
+    canvas.drawImage(await getImageInfo(context, image).then((value) => value.image),
+        offset ?? const Offset(0, 3), paint);
 
     if (shouldAddText) {
       final painter = TextPainter(textDirection: ui.TextDirection.ltr);
@@ -94,8 +102,7 @@ class MyFunctions {
         ..layout()
         ..paint(
           canvas,
-          Offset((width * 0.47) - painter.width * 0.2,
-              (height * 0.1) - painter.height * 0.1),
+          Offset((width * 0.47) - painter.width * 0.2, (height * 0.1) - painter.height * 0.1),
         );
     }
 
@@ -103,7 +110,6 @@ class MyFunctions {
     final data = await img.toByteData(format: ui.ImageByteFormat.png);
     return data?.buffer.asUint8List() ?? Uint8List(0);
   }
-
 
   static double getRadiusFromZoom(double zoom) =>
       40000 / pow(2, zoom) > 1 ? 40000 / pow(2, zoom) : 1;
@@ -125,15 +131,12 @@ class MyFunctions {
   static List<String> getUpperLetter() =>
       [for (int i = 0; i < 26; i++) String.fromCharCode(i + 65)];
 
-
-
   static bool isEmail(String email) => RegExp(
           r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$')
       .hasMatch(email);
 
   static String getErrorMessage(Failure failure) {
-    var err =
-        (failure is ServerFailure) ? failure.errorMessage : failure.toString();
+    var err = (failure is ServerFailure) ? failure.errorMessage : failure.toString();
     if (err == 'Wrong code!') {
       err = 'Код подтверждения введен неверно';
     }

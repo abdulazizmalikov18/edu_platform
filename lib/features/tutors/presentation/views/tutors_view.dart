@@ -21,7 +21,7 @@ class TutorsView extends StatelessWidget {
               backgroundImage: AssetImage(AppImages.user),
             ),
             const SizedBox(width: 16),
-            Text(tutors.whom),
+            Text("${tutors.firstname} ${tutors.lastname}"),
           ],
         ),
         actions: [
@@ -89,10 +89,8 @@ class TutorsView extends StatelessWidget {
                             children: [
                               Text(
                                 'British',
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .titleMedium!
-                                    .copyWith(color: green),
+                                style:
+                                    Theme.of(context).textTheme.titleMedium!.copyWith(color: green),
                               ),
                               const SizedBox(height: 8),
                               Text(
@@ -118,10 +116,8 @@ class TutorsView extends StatelessWidget {
                             children: [
                               Text(
                                 tutors.event.studentCount.toString(),
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .titleMedium!
-                                    .copyWith(color: green),
+                                style:
+                                    Theme.of(context).textTheme.titleMedium!.copyWith(color: green),
                               ),
                               const SizedBox(height: 8),
                               Text(
@@ -147,10 +143,8 @@ class TutorsView extends StatelessWidget {
                             children: [
                               Text(
                                 tutors.lang,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .titleMedium!
-                                    .copyWith(color: green),
+                                style:
+                                    Theme.of(context).textTheme.titleMedium!.copyWith(color: green),
                               ),
                               const SizedBox(height: 8),
                               Text(
@@ -251,10 +245,8 @@ class TutorsView extends StatelessWidget {
                     ),
                     Text(
                       'Students',
-                      style: Theme.of(context)
-                          .textTheme
-                          .labelSmall!
-                          .copyWith(color: buttonTextGreen),
+                      style:
+                          Theme.of(context).textTheme.labelSmall!.copyWith(color: buttonTextGreen),
                     )
                   ],
                 ),
@@ -279,10 +271,7 @@ class TutorsView extends StatelessWidget {
                 const SizedBox(height: 12),
                 Text(
                   tutors.aboutTeacher,
-                  style: Theme.of(context)
-                      .textTheme
-                      .labelSmall!
-                      .copyWith(color: buttonTextGreen),
+                  style: Theme.of(context).textTheme.labelSmall!.copyWith(color: buttonTextGreen),
                 ),
               ],
             ),
@@ -334,8 +323,7 @@ class TutorsView extends StatelessWidget {
                   padding: const EdgeInsets.all(16),
                   decoration: BoxDecoration(
                     color: whiteGrey,
-                    borderRadius:
-                        const BorderRadius.vertical(top: Radius.circular(16)),
+                    borderRadius: const BorderRadius.vertical(top: Radius.circular(16)),
                     border: Border.all(color: dividerGrey),
                   ),
                   child: Row(
@@ -396,9 +384,7 @@ class TutorsView extends StatelessWidget {
                               style: Theme.of(context)
                                   .textTheme
                                   .displayMedium!
-                                  .copyWith(
-                                      color: green,
-                                      fontWeight: FontWeight.w600),
+                                  .copyWith(color: green, fontWeight: FontWeight.w600),
                             ),
                           ],
                         ),

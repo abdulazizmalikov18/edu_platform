@@ -5,19 +5,20 @@ import 'package:edu_platform/core/exceptions/exceptions.dart';
 import 'package:edu_platform/core/exceptions/failures.dart';
 import 'package:edu_platform/core/utils/either.dart';
 import 'package:edu_platform/features/common/pagination/models/generic_pagination.dart';
-import 'package:edu_platform/features/Courses/data/datasource/Courses_data_source.dart';
-import 'package:edu_platform/features/courses/domain/entity/courses_entity.dart';
-import 'package:edu_platform/features/courses/domain/repo/courses_repo.dart';
+import 'package:edu_platform/features/main/data/data_source/home_data_source.dart';
+import 'package:edu_platform/features/main/data/model/event_filter_model.dart';
+import 'package:edu_platform/features/main/domain/entity/event_user_entity.dart';
+import 'package:edu_platform/features/main/domain/repo/home_repo.dart';
 
-class CoursesRepoImpl extends CoursesRepo {
-  final CoursesDataSourceImpl dataSource;
+class HomeRepoImpl implements HomeRepo {
+  final EventsDataSource dataSource;
 
-  CoursesRepoImpl({required this.dataSource});
+  HomeRepoImpl({required this.dataSource});
 
   @override
-  Future<Either<Failure, GenericPagination<CoursesEntity>>> coursesList() async {
+  Future<Either<Failure, GenericPagination<EventUserEntity>>> eventsUser(EventFilter param) async {
     try {
-      final result = await dataSource.coursesList();
+      final result = await dataSource.eventsUser(param);
       return Right(result);
     } on DioExceptions {
       return Left(DioFailure());

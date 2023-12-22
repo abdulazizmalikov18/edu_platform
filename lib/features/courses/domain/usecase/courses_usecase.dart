@@ -7,12 +7,10 @@ import 'package:edu_platform/features/courses/data/repo/courses_repo_impl.dart';
 import 'package:edu_platform/features/courses/domain/entity/courses_entity.dart';
 import 'package:edu_platform/features/courses/domain/repo/courses_repo.dart';
 
-class CoursesUseUseCase
-    extends UseCase<GenericPagination<CoursesEntity>, NoParams> {
+class CoursesUseUseCase extends UseCase<GenericPagination<CoursesEntity>, NoParams> {
   final CoursesRepo repository = serviceLocator<CoursesRepoImpl>();
 
   @override
-  Future<Either<Failure, GenericPagination<CoursesEntity>>> call(
-          NoParams params) async =>
+  Future<Either<Failure, GenericPagination<CoursesEntity>>> call(NoParams params) async =>
       await repository.coursesList();
 }

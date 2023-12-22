@@ -35,7 +35,7 @@ class _MessagesMainViewState extends State<MessagesMainView> {
               itemBuilder: (context, index) => ListTile(
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => const MessagesView(),
+                    builder: (context) => MessagesView(chatIteam: state.chatList[index]),
                   ));
                 },
                 tileColor: white,

@@ -12,7 +12,9 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
   ChatUseUseCase useCase = ChatUseUseCase();
   ChatBloc() : super(const ChatState()) {
     on<GetChat>((event, emit) async {
-      emit(state.copyWith(status: FormzStatus.submissionInProgress));
+      if (state.chatList.isEmpty) {
+        emit(state.copyWith(status: FormzStatus.submissionInProgress));
+      }
       final result = await useCase.call(NoParams());
       if (result.isRight) {
         emit(state.copyWith(

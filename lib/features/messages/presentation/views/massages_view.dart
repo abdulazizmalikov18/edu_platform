@@ -2,11 +2,13 @@ import 'package:edu_platform/assets/colors/colors.dart';
 import 'package:edu_platform/assets/constants/icons.dart';
 import 'package:edu_platform/assets/constants/images.dart';
 import 'package:edu_platform/features/common/widgets/w_textfield.dart';
+import 'package:edu_platform/features/tutors/domain/entity/favorite_tutor_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:keyboard_dismisser/keyboard_dismisser.dart';
 
 class MessagesView extends StatelessWidget {
-  const MessagesView({super.key});
+  const MessagesView({super.key, required this.chatIteam});
+  final TutorsEntity chatIteam;
 
   @override
   Widget build(BuildContext context) {
@@ -24,13 +26,13 @@ class MessagesView extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text('Teacher Darren'),
+                  Text("${chatIteam.firstname} ${chatIteam.lastname}"),
                   Text(
-                    'Online',
+                    chatIteam.isOnline ? 'Online' : 'Offline',
                     style: Theme.of(context)
                         .textTheme
                         .labelSmall!
-                        .copyWith(color: green),
+                        .copyWith(color: chatIteam.isOnline ? green : red),
                   ),
                 ],
               ),

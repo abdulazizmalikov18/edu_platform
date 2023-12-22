@@ -14,3 +14,9 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) => UserModel(
           : const DataEntityConverter()
               .fromJson(json['data'] as Map<String, dynamic>?),
     );
+
+Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{
+      'status': instance.status,
+      'message': instance.message,
+      'data': const DataEntityConverter().toJson(instance.data),
+    };

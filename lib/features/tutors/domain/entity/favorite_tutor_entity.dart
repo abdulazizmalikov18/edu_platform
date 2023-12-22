@@ -1,8 +1,10 @@
 // import 'package:equatable/equatable.dart';
 
+import 'package:edu_platform/features/tutors/data/models/tutors_model.dart';
 import 'package:edu_platform/features/tutors/domain/entity/event_entity.dart';
 import 'package:edu_platform/features/tutors/domain/entity/rating_entity.dart';
 import 'package:equatable/equatable.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 class TutorsEntity extends Equatable {
   final int id;
@@ -43,6 +45,7 @@ class TutorsEntity extends Equatable {
   @RatingEntityConverter()
   final RatingEntity rating;
   final bool isFavourite;
+  final bool isActiveFreeTrail;
 
   const TutorsEntity({
     this.id = 0,
@@ -81,6 +84,7 @@ class TutorsEntity extends Equatable {
     this.event = const EventEntity(),
     this.rating = const RatingEntity(),
     this.isFavourite = false,
+    this.isActiveFreeTrail = false,
   });
 
   @override
@@ -121,5 +125,15 @@ class TutorsEntity extends Equatable {
         event,
         rating,
         isFavourite,
+        isActiveFreeTrail,
       ];
+}
+
+class TutorsEntityConverter implements JsonConverter<TutorsEntity, Map<String, dynamic>?> {
+  const TutorsEntityConverter();
+  @override
+  TutorsEntity fromJson(Map<String, dynamic>? json) => TutorsModel.fromJson(json ?? {});
+
+  @override
+  Map<String, dynamic>? toJson(TutorsEntity object) => {};
 }

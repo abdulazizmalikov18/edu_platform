@@ -1,3 +1,7 @@
+import 'dart:ui';
+
+import 'package:flutter_svg/flutter_svg.dart';
+
 class AppIcons {
   static const search = 'assets/icons/search.svg';
   static const close = 'assets/icons/close.svg';
@@ -21,4 +25,19 @@ class AppIcons {
   static const star = 'assets/icons/star.svg';
   static const warning = 'assets/icons/warning.svg';
   static const live = 'assets/icons/live.svg';
+}
+
+extension SvgExt on String {
+  SvgPicture svg({
+    Color? color,
+    double? width,
+    double? height,
+  }) {
+    return SvgPicture.asset(
+      this,
+      colorFilter: color != null ? ColorFilter.mode(color, BlendMode.srcIn) : null,
+      width: width,
+      height: height,
+    );
+  }
 }

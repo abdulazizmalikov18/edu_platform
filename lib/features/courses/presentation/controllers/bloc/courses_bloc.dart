@@ -15,12 +15,10 @@ class CoursesBloc extends Bloc<CoursesEvent, CoursesState> {
       emit(state.copyWith(status: FormzStatus.submissionInProgress));
       final result = await useCase.call(NoParams());
       if (result.isRight) {
-        emit(
-          state.copyWith(
-            courseList: result.right.data,
-            status: FormzStatus.submissionSuccess,
-          ),
-        );
+        emit(state.copyWith(
+          courseList: result.right.data,
+          status: FormzStatus.submissionSuccess,
+        ));
       } else {
         emit(state.copyWith(status: FormzStatus.submissionFailure));
       }

@@ -25,3 +25,42 @@ const _buttonGrey = Color(0xffECEEF1);
 const _inputGrey = Color(0xff858585);
 const _backgroundColor = Color(0xfff5f8fc);
 const _dividerGrey = Color(0xffE8E4E4);
+
+List<BoxShadow> wboxShadow = const [
+  BoxShadow(
+    offset: Offset(0, 0),
+    blurRadius: 22,
+    spreadRadius: 0,
+    color: Color.fromRGBO(149, 173, 254, 0.30),
+  ),
+];
+
+List<BoxShadow> elevationShadow = const [
+  BoxShadow(
+    offset: Offset(0, 0),
+    blurRadius: 10,
+    spreadRadius: 0,
+    color: Color.fromRGBO(38, 38, 38, 0.10),
+  ),
+];
+
+List<BoxShadow> wTutorShadow = const [
+  BoxShadow(
+    color: Color(0x0F1D1617),
+    blurRadius: 12,
+    offset: Offset(0, 10),
+    spreadRadius: 0,
+  ),
+];
+
+LinearGradient wgradient = const LinearGradient(
+  begin: Alignment.centerLeft,
+  end: Alignment.centerRight,
+  colors: [Color(0xFF4568DC), Color(0xFFB06AB3)],
+);
+
+BoxDecoration wdecoration = BoxDecoration(
+  borderRadius: BorderRadius.circular(8),
+  color: white,
+  boxShadow: wboxShadow,
+);

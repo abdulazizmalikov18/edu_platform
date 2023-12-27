@@ -15,12 +15,10 @@ class RatingEntity extends Equatable {
   List<Object?> get props => [ball, count];
 }
 
-class RatingEntityConverter
-    implements JsonConverter<RatingEntity, Map<String, dynamic>?> {
+class RatingEntityConverter implements JsonConverter<RatingEntity, Map<String, dynamic>?> {
   const RatingEntityConverter();
   @override
-  RatingEntity fromJson(Map<String, dynamic>? json) =>
-      RatingModel.fromJson(json ?? {});
+  RatingEntity fromJson(Map<String, dynamic>? json) => RatingModel.fromJson(json ?? {});
 
   @override
   Map<String, dynamic>? toJson(RatingEntity object) => {};

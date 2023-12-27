@@ -1,7 +1,6 @@
 import 'package:edu_platform/assets/colors/colors.dart';
 import 'package:edu_platform/assets/constants/icons.dart';
 import 'package:edu_platform/features/common/widgets/stroke_paint.dart';
-import 'package:edu_platform/features/common/widgets/w_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
@@ -21,7 +20,7 @@ class WTextField extends StatefulWidget {
   final TextInputType? keyBoardType;
   final bool? isObscure;
   final Widget? suffix;
-  final String? suffixIcon;
+  final Widget? suffixIcon;
   final EdgeInsets? suffixPadding;
   final TextCapitalization textCapitalization;
   final ValueChanged<String> onChanged;
@@ -98,8 +97,7 @@ class WTextField extends StatefulWidget {
   State<WTextField> createState() => _WTextFieldState();
 }
 
-class _WTextFieldState extends State<WTextField>
-    with SingleTickerProviderStateMixin {
+class _WTextFieldState extends State<WTextField> with SingleTickerProviderStateMixin {
   late FocusNode focusNode;
   bool focused = false;
   bool hasText = false;
@@ -109,8 +107,8 @@ class _WTextFieldState extends State<WTextField>
 
   @override
   void initState() {
-    animationController = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 200));
+    animationController =
+        AnimationController(vsync: this, duration: const Duration(milliseconds: 200));
     animationController.forward();
 
     super.initState();
@@ -160,18 +158,14 @@ class _WTextFieldState extends State<WTextField>
             cursorWidth: 1,
             onEditingComplete: widget.onEditCompleted,
             style: widget.textStyle ??
-                Theme.of(context)
-                    .textTheme
-                    .displayLarge!
-                    .copyWith(fontWeight: FontWeight.w400),
+                Theme.of(context).textTheme.displayLarge!.copyWith(fontWeight: FontWeight.w400),
             decoration: InputDecoration(
               fillColor: white,
               filled: true,
               isDense: true,
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
-                borderSide:
-                    BorderSide(color: widget.hasError ? red : whiteGrey),
+                borderSide: BorderSide(color: widget.hasError ? red : whiteGrey),
               ),
               errorBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10),
@@ -185,16 +179,10 @@ class _WTextFieldState extends State<WTextField>
                 borderRadius: BorderRadius.circular(8),
                 borderSide: BorderSide(color: widget.hasError ? red : green),
               ),
-              suffix: widget.suffix != null
-                  ? SizedBox(width: widget.suffixSize)
-                  : null,
-              counterText:
-                  widget.hideCounterText != null && widget.hideCounterText!
-                      ? ''
-                      : null,
+              suffix: widget.suffix != null ? SizedBox(width: widget.suffixSize) : null,
+              counterText: widget.hideCounterText != null && widget.hideCounterText! ? '' : null,
               prefixIconConstraints: const BoxConstraints(maxWidth: 70),
-              contentPadding: const EdgeInsets.only(
-                  top: 14, bottom: 14, left: 16, right: 36),
+              contentPadding: const EdgeInsets.only(top: 14, bottom: 14, left: 16, right: 36),
               prefixIcon: widget.prefixIcon,
               hintText: widget.hintText,
               hintStyle: widget.hintTextStyle ??
@@ -208,12 +196,7 @@ class _WTextFieldState extends State<WTextField>
             right: 0,
             child: widget.isObscure == null
                 ? widget.suffixIcon != null
-                    ? WButton(
-                        borderRadius: 8,
-                        padding: const EdgeInsets.symmetric(horizontal: 26),
-                        onTap: () {},
-                        text: 'Send',
-                      )
+                    ? widget.suffixIcon!
                     : const SizedBox()
                 : GestureDetector(
                     onTap: () {
@@ -238,8 +221,7 @@ class _WTextFieldState extends State<WTextField>
                             width: 24,
                             height: 24,
                             child: CustomPaint(
-                              foregroundPainter:
-                                  StrokePaint(animationController.value),
+                              foregroundPainter: StrokePaint(animationController.value),
                               child: child,
                             ),
                           ),

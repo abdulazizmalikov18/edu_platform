@@ -50,7 +50,7 @@ class _MyAppState extends State<MyApp> {
         BlocProvider(create: (context) => HomeBloc()),
       ],
       child: MaterialApp(
-        title: 'Flutter Demo',
+        title: 'Rebata',
         debugShowCheckedModeBanner: false,
         theme: AppTheme.theme(),
         navigatorKey: _navigatorKey,

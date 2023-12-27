@@ -28,6 +28,7 @@ dependencies:
   json_annotation: ^4.8.1
   table_calendar: ^3.0.9
   zego_uikit_prebuilt_video_conference: ^2.6.3
+  intl: ^0.18.1
 
 
 dev_dependencies:

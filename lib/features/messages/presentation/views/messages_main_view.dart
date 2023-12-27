@@ -1,9 +1,13 @@
 import 'package:edu_platform/assets/colors/colors.dart';
+import 'package:edu_platform/assets/constants/icons.dart';
 import 'package:edu_platform/assets/constants/images.dart';
+import 'package:edu_platform/features/common/widgets/w_textfield.dart';
 import 'package:edu_platform/features/messages/presentation/controllers/bloc/chat_bloc.dart';
 import 'package:edu_platform/features/messages/presentation/views/massages_view.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:formz/formz.dart';
 
 class MessagesMainView extends StatefulWidget {
@@ -26,15 +30,14 @@ class _MessagesMainViewState extends State<MessagesMainView> {
       body: BlocBuilder<ChatBloc, ChatState>(
         builder: (context, state) {
           if (state.status.isSubmissionInProgress) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
+            return const Center(child: CircularProgressIndicator());
           } else if (state.status.isSubmissionSuccess) {
             return ListView.builder(
               itemCount: state.chatList.length,
               itemBuilder: (context, index) => ListTile(
                 onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
+                  context.read<ChatBloc>().add(GetMessages(id: state.chatList[index].id));
+                  Navigator.of(context).push(CupertinoPageRoute(
                     builder: (context) => MessagesView(chatIteam: state.chatList[index]),
                   ));
                 },
@@ -100,11 +103,26 @@ class _MessagesMainViewState extends State<MessagesMainView> {
               ),
             );
           } else {
-            return const Center(
-              child: Text("Error"),
-            );
+            return const Center(child: Text("Error"));
           }
         },
+      ),
+      bottomNavigationBar: Container(
+        height: 80,
+        color: white,
+        width: double.infinity,
+        padding: const EdgeInsets.all(16),
+        child: WTextField(
+          onChanged: (value) {},
+          prefixIcon: Padding(
+            padding: const EdgeInsets.fromLTRB(16, 12, 8, 12),
+            child: SvgPicture.asset(
+              AppIcons.search,
+              colorFilter: const ColorFilter.mode(dark, BlendMode.srcIn),
+            ),
+          ),
+          hintText: 'Search',
+        ),
       ),
     );
   }
